@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  </head>
+  <body>
+    <style>
+    @import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed&display=swap');
+    body{
+      background-color: black;
+    }
+    section{
+      width: 100%;
+      margin-top: 21px;
+    }
+    .content{
+      margin: auto;
+    }
+    .content-select select{
+      appearance: none;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+    }
+    /* Eliminamos la fecha que por defecto aparece en el desplegable */
+    .content-select select::-ms-expand {
+      display: none;
+    }
+    .content-select{
+      position: relative;
+      margin: 0px 21px;
+    }
+
+    .content-select select{
+      width: 100%;
+      padding: 16px 56px 16px 16px;
+      border: 0.5px solid #FEFEFE;
+      border-radius: 5px;
+      font-family: 'Roboto Condensed';
+      font-style: normal;
+      font-weight: 400;
+      font-size: 24px;
+      color: #FEFEFE;
+      background-color: black;
+    }
+    .box{
+      display: block;
+      overflow: unset ;
+    }
+
+    @media screen and (max-width: 350px) {
+      .content-select select{
+        padding: 6px 16px;
+        height: 60px;
+      }
+      .slider {
+        margin-top: 8px;
+        scroll-snap-type: x mandatory;
+        display: flex;
+        -webkit-overflow-scrolling: touch;
+        overflow-x: scroll;
+        column-gap: 1rem;
+      }
+      .child {
+        border-right: 1px solid white;
+        padding: 1rem;
+        min-width: 60vw;
+        scroll-snap-align: start;
+        position: relative;
+        width: 100%;
+        flex: 1 1 80%;
+        background-color: #4c4a4a;
+      }
+      .container-button{
+        display: none !important;
+    }
+    .closed{
+      opacity: 1 !important;
+    }
+    p{
+      font-size: 18px !important;
+    }
+    h3{
+      font-size:14px !important;
+    }
+    .title{
+      margin: 7px !important;
+    }
+    }
+    .content-select i{
+      position: absolute;
+      right: 22px;
+      top: calc(50% - 10px);
+      width: 10.85px;
+      height: 11.95px;
+      display: block;
+      border-left: 2px solid #FEFEFE;
+      border-bottom: 2px solid #FEFEFE;
+      transform: rotate(-45deg);
+      transition: all 0.25s ease;
+    }
+    .box-title{
+      border: 0.5px solid #FEFEFE;
+    }
+    .title{
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 25px;
+    }
+    .content-select:hover i{
+      margin-top: 3px;
+    }
+    .content{
+      max-width: 380px
+    }
+    .container{
+      margin: 0px 21px;
+    }
+    .img-product{
+      width: 100%;
+    }
+    .contain-img{
+      object-fit: contain;
+       width: 100%;
+       padding-top: 10px;
+    }
+    select{
+      margin: 30px 0px;
+    }
+    p{
+      font-family: 'Roboto Condensed';
+      font-style: normal;
+      font-weight: 400;
+      font-size: 24px;
+      line-height: 35px;
+      color: #F5F5F5;
+      margin: 0;
+    }
+    h3{
+      width: 100%;
+      font-family: 'Roboto Condensed';
+      font-style: normal;
+      font-weight: 500;
+      font-size: 16px;
+      line-height: 19px;
+      color: #AEA38B;
+      margin: 0;
+    }
+    h2{
+      color: white;
+      font-family: docs-Merriweather, Arial;
+      font-size: 22.666666666666664px;
+      font-letiant: normal;
+      font-weight: 700;
+      vertical-align: baseline;
+    }
+
+
+    .loader {
+      display: none;
+      position: absolute;
+      width: 80px;
+      height: 80px;
+    left: 36%;
+    top: 18%;
+
+    }
+
+    .loader div {
+      position: absolute;
+      top: 33px;
+      width: 13px;
+      height: 13px;
+      border-radius: 50%;
+      background: #e6e3d8;
+      animation-timing-function: cubic-bezier(0, 1, 1, 0);
+    }
+
+    .loader div:nth-child(1) {
+      left: 8px;
+      animation: flip1 0.6s infinite;
+    }
+
+    .loader div:nth-child(2) {
+      left: 8px;
+      animation: flip2 0.6s infinite;
+    }
+
+    .loader div:nth-child(3) {
+      left: 32px;
+      animation: flip2 0.6s infinite;
+    }
+
+    .loader div:nth-child(4) {
+      left: 56px;
+      animation: flip3 0.6s infinite;
+    }
+    .close{
+      transform: rotate(0.5turn);
+    }
+    .closed{
+      opacity: 0;
+    }
+    .container-button{
+        margin: 5px;
+        display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 9px;
+    }
+
+    @keyframes flip1 {
+      0% {
+        transform: scale(0);
+      }
+
+      100% {
+        transform: scale(1);
+      }
+    }
+
+    @keyframes flip3 {
+      0% {
+      transform: scale(1);
+      }
+
+      100% {
+      transform: scale(0);
+      }
+    }
+
+    @keyframes flip2 {
+      0% {
+      transform: translate(0, 0);
+      }
+
+      100% {
+      transform: translate(24px, 0);
+      }
+    }
+    </style>
+    <div id="options" class="content" >
+
+      <div class="content-select">
+        <select name="" id="select" onchange="cambiarValor()">
+         <option selected="true" disabled="disabled" id="option">Gentleman Jack</option>
+        </select>
+        <i></i>
+      </div>
+
+      <div id="container" class="container">
+        <div class="box-title">
+          <div class="contain-img">
+            <img src="https://drive.google.com/uc?export=view&id=1Tb2vHbVcBxW_eGOUfCiCbcNc1I3ZoY7M&rl" alt="" id="img" class="img-product">
+          </div>
+          <p id="title" class="title">Gentleman Jack</p>
+          <div class="container-button">
+            <img  id="button" src="https://drive.google.com/uc?export=view&id=1vqX0aUuSv2HS1wPCOlx2ur-eAppLI7d6&rl" alt="" class="close">
+          </div>
+        </div>
+        <div class="loader" id="loader">
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+        </div>
+        <div class="box closed" id="box">
+          <div class="container-box slider">
+            <section class="child">
+
+              <h3>Priority</h3>
+              <p id="priority">High</p>
+              <br>
+              <h3>Consumer Role</h3>
+              <p id="consumer">Accessible status for those with less knowledge</p>
+              <br>
+              </section>
+              <section class="child">
+  
+                <h3>Brand Role </h3>
+                <p id="brand">Premium perception</p>
+                <br>
+                <h3>Business Role</h3>
+                <p id="business">High growth, high margin </p>
+                <br>
+              </section>
+              <section class="child">
+                <h3>Reason to Believe</h3>
+                <p id="reason">Double mellowed for extra smoothness</p>
+                <br>
+                <h3>Price Index & Price Positioning</h3>
+                <p id="price">135 Entry lever super-premium</p>
+                <br>
+              </section>
+              <section class="child">
+              <h3>We win when we beat...</h3>
+              <p id="beat">Crown Royal, Chivas Regal, Johnnie Walker Black Label</p>
+              <br>
+              <h3>Brand Purpose</h3>
+              <p id="purpose"> Live Boldly & Enjoy the Ride</p>
+              <br>
+            </section>
+            <section class="child">
+              <h3> Portfolio Pillar</h3>
+              <p id="portfolio">Refined</p>
+              <br>
+              <h3> CET</h3>
+              <p id="cet">Red/Purple</p>
+              <br>
+            </section>
+            <section class="child">
+              <h3>Distinctive Assets</h3>
+              <p id="distinctive">Jack Daniel's arched logo,‘Tombstone’ bottle, ‘Gentleman Jack’ name, silver label color</p>
+              <br>
+            </section>
+          </div>
+
+        </div>
+
+      </div>
+
+
+    </div>
+    <script>
+
+      const url = "https://script.google.com/macros/s/AKfycbwE2dHWCRF-6ZXfS3gY7Q0GKDALZYSGGJcYyeFd6fptUoelZjx320uTB-f9Qf_DmYI/exec";
+      let element = document.getElementById("options");
+      let selectList = document.getElementById("select");
+      let button= document.getElementById("button");
+      let box= document.getElementById("box");
+      button.addEventListener('click', abrir);
+      subscribe();
+      async function subscribe() {
+        const response = await fetch(url);
+        const jsonData = await response.json();
+        for (let i = 0; i < jsonData.length; i++) {
+          let option = document.createElement("option"); 
+          option.value = jsonData[i].name;
+          option.text = jsonData[i].name;
+          selectList.appendChild(option);
+        }
+        selectList.addEventListener('change', cambiarValor);
+      }
+  
+      async function cambiarValor() {
+        let loader = document.getElementById("loader");
+        let container= document.getElementById("container");
+        container.style.opacity=0.3;
+        loader.style.display="block";
+        let valueSelected = document.getElementById("select").value;
+        const response = await fetch(url);
+        fetch(url)
+        .then(response => response.json())
+        .then(data => {
+          const persona = data.filter(item => item.name === valueSelected);
+          let img= document.getElementById("img");
+          img.src =persona[0].url;
+          img.role ="img";
+          img.classList= "CENy8b img-product";
+          let option= document.getElementById("option");
+          option.style.display="none";
+          let name= document.getElementById("title");
+          name.textContent = persona[0].name;
+          let priority= document.getElementById("priority");
+          priority.textContent = persona[0].priority;
+          priority.classList= "priority";
+          let consumer= document.getElementById("consumer");
+          consumer.textContent = persona[0].consumer;
+          consumer.classList= "consumer";
+          let brand= document.getElementById("brand");
+          brand.textContent = persona[0].brand;
+          brand.classList= "brand";
+          let business= document.getElementById("business");
+          business.textContent = persona[0].business;
+          business.classList= "business";
+          let reason= document.getElementById("reason");
+          reason.textContent = persona[0].reason;
+          reason.classList= "reason";
+          let price= document.getElementById("price");
+          price.textContent = persona[0].price;
+          price.classList= "price";
+          let beat= document.getElementById("beat");
+          beat.textContent = persona[0].beat;
+          beat.classList= "beat";
+          let purpose= document.getElementById("purpose");
+          purpose.textContent = persona[0].purpose;
+          purpose.classList= "purpose";
+          let portfolio= document.getElementById("portfolio");
+          portfolio.textContent = persona[0].portfolio;
+          portfolio.classList= "portfolio";
+          let cet= document.getElementById("cet");
+          cet.textContent = persona[0].cet;
+          cet.classList= "cet";
+          let distinctive= document.getElementById("distinctive");
+          distinctive.textContent = persona[0].distinctive;
+          distinctive.classList= "distinctive";
+          container.style.opacity=1;
+          loader.style.display="none";
+  
+        })
+        .catch(error => console.error(error));
+      }
+  
+      function abrir(){
+        button.classList.toggle("close");
+        box.classList.toggle("closed");
+      }
+      </script>
+  </body>
+</html>
